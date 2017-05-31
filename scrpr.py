@@ -59,32 +59,3 @@ for link in gglinks:
 
 
 print(output)
-
-
-"""
-<tr class=" action" onclick="window.open('/tracklist/1yjslymt/noisia-noisia-radio-s03e17-2017-04-28.html', '_self');" id="tlRow_134651">
-urls = [url] #stack of urls to scrape
-visited = [url] #record of all urls
-
-while len(urls) > 0:
-	try:
-		htmltext = urllib.urlopen(urls[0]).read()
-	except: 
-		print urls[0]
-	
-	soup = BeautifulSoup(htmltext,"lxml")
-	urls.pop(0) # grab first element 
-	print(len(urls))
-	for tag in soup.findAll('a' , href = True):
-		#print(tag['href'])
-		
-		tag['href'] = urlparse.urljoin(url , tag['href'] )
-		#grabbing urls from urls found 
-		
-		#
-		if url in tag['href'] and tag['href'] not in visited: 
-			urls.append(tag['href']) #
-			visited.append(tag['href']) # will have complete record of sites
-print(visited)
-"""		
-		 	
