@@ -1,4 +1,9 @@
-# tracklist_scraping
-simple python to scrape tracklists
+#1001 track list scraper
+scrapes tracklists info, from specific shows,and converts to csv 
 
-Goal : automated scraping of tracklists on weekly podcast shows , possibly include links to tracks (will need crawling)
+#Usage
+python scraper.py  "...1001tracklists.com/source/..."
+
+#Creates CSV "tl_info.csv" in directory 
+
+
