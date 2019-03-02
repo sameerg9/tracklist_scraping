@@ -1,23 +1,30 @@
-import urlparse,urllib,sys,re,csv 
+import sys,re,csv 
 import pandas as pd
+from urllib3 import PoolManager
+from sys import argv
 
-if (len(sys.argv) < 2):
-	print('specify url')
-	quit()
-##for grabbing episodes from the show's page	
+# if (len(sys.argv) < 2):
+# 	print('~-----specify url------~')
+# 	quit()
+
 site ='https://www.1001tracklists.com' 
-
-html = urllib.urlopen(sys.argv[1]).read()
+url='https://www.1001tracklists.com/source/gh73v3/ignite-radio/index.html'
+url2= 'https://www.1001tracklists.com/source/tgg1cc/maxximize-on-air/index.html'
+#resp = http.request('GET',argv[1])	
+http = PoolManager()
+resp = http.request('GET',url)	
+html = resp.data.decode("utf-8")
 
 ll = []
 ll.extend((re.findall(r'<tr(.*?)>',html,re.IGNORECASE|re.DOTALL)) )
-
+print(ll)
 links0 = []
 listCount =0
 for l in ll:
 	links0.extend((re.findall(r'class=" action" onclick="window.open\(\'(.*?)\',',l,re.IGNORECASE|re.DOTALL)) )
 linkCount = 0
-
+print(ll)
+print(links0)
 
 var0 = [] 
 tracks = [] 
@@ -40,16 +47,18 @@ info = []
 info1 = []
 
 i = 0 
+print("\ngoing in+\n +\n ++\n  ++++")
 
 for link in links0:
-	#if(i==3):
-	#	quit()
+	if(i>3):
+		quit()
 	episodes = site + link
 
-	print(linkCount)
-	print(episodes)
-
-	ep = urllib.urlopen(episodes).read()
+	# print(linkCount)
+	# print(i,'______',episodes)
+	
+	resp = http.request('GET',episodes)	
+	ep = resp.data.decode("utf-8")
 	
 	info1.extend((re.findall(r'itemprop="interactionCount" content="(.*?)"',ep,re.IGNORECASE | re.DOTALL  )))
 	
@@ -71,7 +80,7 @@ for link in links0:
 	
 	artists.extend(v00)
 	tracks.extend(var0)
-	
+	# print(artists," [] ",tracks)
 	
 
 	#plays/likes for episode
