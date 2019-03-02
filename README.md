@@ -2,7 +2,12 @@
 gathers info about tracks in tracklists in a show from website to csv file
 
 ## Usage 
-python scrpr0.py ...link to podcast of interest on 1001tracklist's website...
+`python3 scrpr0.py`
 
-### Output to csv file
+### Sample Output
+| Track         |    Artist     | Label | Score | . . . |
+| ------------- |:-------------:|:-----:|:-----:| -----:|
+| SickSong      | sssssssiigned | $1600 | .442  | -----:|
+| GreatSong     | centered0     |   $12 | .343  | -----:|
+|   AnotherOne  | DJWLAHED      |    $1 | .454  | -----:|
 
